@@ -1,151 +1,79 @@
-# Live-Attack-Simulation-in-Azure-SOC-using-Microsoft-Sentinel-March-2025
-
-
 # Live-Attack-Simulation-in-Azure-SOC-using-Microsoft-Sentinel
 
 ## Overview
 
-In this project, I built a **Live Attack Simulation** environment using **Azure** and **Microsoft Sentinel** for a **Security Operations Center (SOC)**. The goal of this project is to simulate real-world cyber-attacks and demonstrate how security operations teams can detect, monitor, and respond to these attacks in real time. The project leverages **Azure resources**, **Log Analytics Workspaces**, and **Microsoft Sentinel** for collecting, analyzing, and visualizing logs to improve threat detection and incident management.
+In this project, I built a **Live Attack Simulation** environment using **Azure** and **Microsoft Sentinel** for a **Security Operations Center (SOC)**. The project is designed to simulate real-world cyber-attacks and demonstrates how SOC teams can monitor, detect, and respond to these attacks in real-time. The simulation leverages **Azure resources**, **Log Analytics Workspaces**, and **Microsoft Sentinel** to centralize log collection and threat detection.
 
 ## Steps Taken
 
-### 1. Setting Up an Azure Subscription
+### 1. **Setting Up Azure Subscription and Resource Group**
 
-The first step was setting up an **Azure subscription** followed by creating a **Resource Group** to organize all the resources. A **Virtual Machine (VM)** was deployed and exposed to the internet, which acts as a **honeypot** to attract and simulate attack attempts.
+The first step was setting up an **Azure Subscription** and creating a **Resource Group** called `RG-SOC-Lab`. This helps organize the resources involved in the attack simulation process.
 
-![Resource Group Creation](https://drive.google.com/file/d/10XRWKEzvbekh4_MBD4T2qt7iMt9lf46N/view?usp=drive_link)
-
----
-
-### 2. Configuring Log Analytics Workspace
-
-A **Log Analytics Workspace** was created in Azure to collect logs from the virtual machine and other Azure resources. This workspace is essential for centralizing log data, which is required for monitoring and performing security analysis.
-
-![Log Analytics Workspace Setup](path-to-your-uploaded-image3)
+![Resource Group Creation](https://drive.google.com/uc?id=10XRWKEzvbekh4_MBD4T2qt7iMt9lf46N)
 
 ---
 
-### 3. Integrating Microsoft Sentinel
+### 2. **Creating Virtual Machine**
 
-Next, **Microsoft Sentinel** was integrated into the environment to provide real-time threat detection capabilities. Sentinel uses advanced analytics and machine learning to automatically detect threats and provide insights into the collected logs from the Log Analytics Workspace.
+I created a **Virtual Machine (VM)** in the `RG-SOC-Lab` resource group. This VM acts as a **honeypot** that gets targeted during the simulated cyber-attacks.
 
-![Sentinel Integration](path-to-your-uploaded-image4)
-
----
-
-### 4. Attack Simulation and Querying
-
-Custom **KQL (Kusto Query Language)** queries were written to detect suspicious activities such as **failed login attempts** and other indicators of compromise (IOCs). These queries were then configured to trigger alerts when certain conditions were met, providing security teams with the necessary data to investigate potential threats.
-
-![Custom Detection Rules](path-to-your-uploaded-image7)
+![Virtual Machine Creation](https://drive.google.com/uc?id=1_fsmna-mxFj4p6MUOZYUF9MCJCFeo7yy)
 
 ---
 
-### 5. Building the Attack Map
+### 3. **Configuring Log Analytics Workspace**
 
-An **Attack Map** was created to visualize the geographic source of the simulated attacks. This feature provides valuable insights into attack patterns and allows security teams to monitor attacks from specific regions in real-time.
+Next, a **Log Analytics Workspace** was configured to collect logs from the virtual machine and other Azure resources. The workspace is essential for aggregating all logs that will be analyzed by **Microsoft Sentinel**.
 
-![Attack Map Visualization](path-to-your-uploaded-image5)
+This image shows a GeoIP Lookup query for security events, mapping the IP addresses to geographic locations such as city and country.
+![Log Analytics Workspace Setup](https://drive.google.com/uc?id=1swJbr0b--EN4G1ZmUqg7KpCzqHLG9EAU)
 
----
 
-### 6. Incident Management
-
-Once an attack is detected, it is logged into the **Incident Management Dashboard**. This dashboard provides an overview of the incident's details, including its severity, the affected systems, and actions to mitigate the impact. It is a central point for security teams to prioritize and respond to incidents.
-
-![Incident Management](path-to-your-uploaded-image6)
+This image shows the User Activity logs, tracking actions like logins and account details for monitoring suspicious behavior.
+![Log Analytics Workspace Setup](https://drive.google.com/uc?id=1faf1zGkIk_02DSUKkKZ3kFCHb_kRDRjJ)
 
 ---
 
-## Technologies Used
+### 4. **Integrating Microsoft Sentinel**
 
-- **Azure**: A cloud platform that provides the infrastructure for hosting virtual machines, networks, and security monitoring tools.
-- **Microsoft Sentinel**: A SIEM (Security Information and Event Management) solution used for threat detection, investigation, and response.
-- **Log Analytics Workspace**: A service in Azure that collects, organizes, and analyzes logs from various Azure resources.
-- **KQL (Kusto Query Language)**: The language used to write custom queries for analyzing logs in Sentinel and Log Analytics.
+**Microsoft Sentinel** was then integrated with the **Log Analytics Workspace** to provide **advanced threat detection** and **incident management**. Sentinel uses machine learning and analytics to detect malicious activity, making it crucial for security monitoring.
 
----
+![Sentinel Integration](https://drive.google.com/uc?id=120aAnpaQX47qZjXHaXhz0GobAtkHnceE)
 
-## Screenshots of the Project
 
-Here are key screenshots showing the steps and features implemented in the project:
+This image displays the query results for SecurityEvent logs, filtered by specific event types. It shows the administrator account logins from the machine CORP-NET-EAST-1, providing a detailed overview of security-related events, including the EventSourceName, Task, and Channel.
+![Microsoft Sentinel](https://drive.google.com/uc?id=1sgc9NhWJ4i9vrew5y-F0B3GhtBuJR3yM)
 
-### 1. Resource Group Creation
 
-A **Resource Group** was created to organize all resources, such as virtual machines and security monitoring tools.
-
-![Resource Group Creation](path-to-your-uploaded-image1)
+This image shows the integration of Microsoft Sentinel with Log Analytics Workspace, querying SecurityEvent logs for Event ID 4625 (failed login attempts). The results are displayed for monitoring and detecting potential security incidents in real-time.
+![Microsoft Sentinel](https://drive.google.com/uc?id=1faf1zGkIk_02DSUKkKZ3kFCHb_kRDRjJ)
 
 ---
 
-### 2. Virtual Machine Creation
+### 5. **Simulating Attacks and Monitoring with Attack Map**
 
-A **Virtual Machine (VM)** was deployed to act as a honeypot, simulating a vulnerable target for attack attempts.
+Simulated cyber-attacks were executed, and an **Attack Map** was built to visualize the sources of these attacks. The map shows the geographical distribution of attacks based on real-time data, helping SOC teams track and respond quickly.
 
-![Virtual Machine Creation](path-to-your-uploaded-image2)
+This map displays both city and country names, providing a comprehensive view of the geographical distribution of cyber-attacks for effective tracking and response.
+![Attack Map](https://drive.google.com/uc?id=1yZeQhrztU14EQAWGXcJ5fn3FPGWN7C7y)
 
----
+This map highlights country names, giving a clear overview of the global spread of the simulated cyber-attacks, simplifying threat tracking.
+![Attack Map](https://drive.google.com/uc?id=1kEolZzbtCkp2u2oMOce64hzoyzM5fm-s)
 
-### 3. Log Analytics Workspace Setup
+This map focuses on city names, offering a more granular view of the attack sources to help pinpoint specific locations for targeted responses.
+![Attack Map](https://drive.google.com/uc?id=1GL-qpAYqAFPvfVa71p6OVgDGaJUHQZMX)
 
-The **Log Analytics Workspace** collects and organizes logs from all Azure resources, enabling detailed security analysis.
 
-![Log Analytics Workspace Setup](path-to-your-uploaded-image3)
-
----
-
-### 4. Sentinel Integration
-
-**Microsoft Sentinel** was configured to integrate with the **Log Analytics Workspace**, enabling automated threat detection and analysis.
-
-![Sentinel Integration](path-to-your-uploaded-image4)
-
----
-
-### 5. Attack Map Visualization
-
-The **Attack Map** provides a real-time visualization of attack sources on a global scale, helping security teams track the geographic distribution of attacks.
-
-![Attack Map Visualization](path-to-your-uploaded-image5)
-
----
-
-### 6. Incident Management
-
-The **Incident Management Dashboard** allows security teams to manage and prioritize security incidents detected in the environment.
-
-![Incident Management](path-to-your-uploaded-image6)
-
----
 
 ## Conclusion
 
-The **Live-Attack-Simulation-in-Azure-SOC-using-Microsoft-Sentinel** project demonstrates how Azure and Sentinel can be leveraged to create an effective security operations center. The integration of threat detection, log collection, and incident management provides a comprehensive solution for monitoring and responding to cyber-attacks. The project also highlights the power of **KQL queries** and **visualization tools** such as **attack maps** to help security teams quickly identify and respond to emerging threats.
+This project demonstrates how **Azure** and **Microsoft Sentinel** can be leveraged to simulate cyber-attacks and efficiently monitor security events. The **Log Analytics Workspace** collects data from different resources, while **Microsoft Sentinel** processes the data for real-time threat detection. The **Attack Map** helps visualize where the attacks are originating from, assisting security teams in making informed decisions.
 
 ---
 
 ## Future Improvements
 
-- **Enhanced Detection**: Adding additional detection rules and integrating other Azure services for deeper insights into network activity.
-- **Automation**: Implementing automated responses to common threats, such as blocking IPs or isolating compromised virtual machines.
-- **Scalability**: Expanding the solution to cover multiple virtual machines and larger network setups to simulate a more complex enterprise environment.
-
----
-
-### License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
----
-
-### How to Use
-
-1. **Fork this repository** to clone the project to your own GitHub account.
-2. **Set up an Azure subscription** and create the required resources (Resource Groups, Virtual Machines, Log Analytics Workspaces, etc.).
-3. **Integrate Microsoft Sentinel** and use the **KQL queries** to begin detecting, monitoring, and responding to simulated cyber-attacks.
-
----
-
-Make sure to replace the **image paths** with the correct file locations in your GitHub repository. You can add this markdown content to your repository's **README.md** file to present the project.
-
-Let me know if you need any further changes or additions to this!
+- **Enhanced Detection Capabilities**: Expanding detection rules and integrating more data sources for a broader perspective.
+- **Automated Threat Response**: Configuring automated actions like blocking IPs or isolating compromised systems.
+- **Scalability**: Testing the setup with multiple virtual machines and more complex enterprise environments.
