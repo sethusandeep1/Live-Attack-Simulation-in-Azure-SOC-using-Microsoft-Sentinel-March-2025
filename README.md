@@ -1,0 +1,1 @@
+# Live-Attack-Simulation-in-Azure-SOC-using-Microsoft-Sentinel-March-2025
